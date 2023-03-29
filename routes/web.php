@@ -16,10 +16,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+/*
 use App\Http\Controllers\Admin\NewsController;
 Route::controller(NewsController::class)->prefix('admin')->group(function() {
     Route::get('news/create','add')->middleware('auth');
+});
+*/
+
+use App\Http\Controllers\Admin\NewsController;
+Route::controller(NewsController::class)->prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    Route::get('news/create','add')->name('news.add');
+    Route::post('news/create','create')->name('news.create');
 });
 
 //以下、9の課題3
@@ -32,9 +39,16 @@ Route::controller(AAAController::class)->group(function() {
 
 //以下、9の課題4
 use App\Http\Controllers\Admin\ProfileController;
-Route::controller(ProfileController::class)->prefix('admin')->group(function() {
-    Route::get('profile/create','add')->middleware('auth');
-    Route::get('profile/edit','edit')->middleware('auth');
+Route::controller(ProfileController::class)->prefix('admin')->name('admin.')->middleware('auth')->group(function() {
+    Route::get('profile/create','add')->name('profile.add');
+    //課題13で追記
+    Route::post('profile/create','create')->name('profile.create');
+    //ここまで
+    Route::get('profile/edit','edit')->name('profile.edit');
+    //課題13で追記
+    Route::post('profile/edit','update')->name('profile.update');
+    //ここまで
+    
 });
 Auth::routes();
 
