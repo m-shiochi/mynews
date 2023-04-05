@@ -23,7 +23,7 @@
                         <label class="col-md-2">お名前</label>
                         <label class="col-md-1">氏</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control" name="family-name" value="{{ old('family-name') }}" placeholder="Last name">
+                            <input type="text" class="form-control" name="familyname" value="{{ old('familyname') }}" placeholder="Last name">
                         </div>
                         <label class="col-md-1">名</label>
                         <div class="col-md-4">

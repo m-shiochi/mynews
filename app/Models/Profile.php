@@ -12,7 +12,7 @@ class Profile extends Model
     protected $guarded = array('id');
     
     public static $rules = array(
-        'family-name' => 'required',
+        'familyname' => 'required',
         'name' => 'required',
         'gender' => 'required',
         'hobby' => 'required',
