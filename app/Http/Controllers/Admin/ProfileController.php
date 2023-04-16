@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 // 以下の1行を追記(14課題で追記)することで、News Modelが扱えるようになる
 use App\Models\Profile;
 
+// 以下、１７の課題で追記
+use App\Models\ProfileHistory;
+
+use Carbon\Carbon;
+
+
 class ProfileController extends Controller
 {
     // 以下が課題5の回答
@@ -88,6 +94,12 @@ class ProfileController extends Controller
         // 該当するデータを上書きして保存する
         $profile->fill($profile_form)->save();
         
-        return redirect('admin/profile/create');
+        // 以下を17の課題で追記
+        $history = new ProfileHistory();
+        $history->profilehistory_id = $profile->id;
+        $history->edited_at = Carbon::now();
+        $history->save();
+        
+        return redirect('admin/profile/edit?id=1');
     }
 }

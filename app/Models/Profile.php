@@ -19,4 +19,11 @@ class Profile extends Model
         'introduction' => 'required',
     );
     //　ここまで
+    
+    // 17の課題で追記
+    public function profilehistories()
+    {
+        return $this->hasMany('App\Models\ProfileHistory', 'profilehistory_id');
+    }
+    
 }

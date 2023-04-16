@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 // (14)以下の1行を追記することで、News modelが扱えるようになる
 use App\Models\News;
 
+// 以下を17で追記
+use App\Models\History;
+
+use Carbon\Carbon;
+
 class NewsController extends Controller
 {
     // 以下を追記
@@ -96,6 +101,12 @@ class NewsController extends Controller
         
         // 該当するデータを上書きして保存する
         $news->fill($news_form)->save();
+        
+        // 以下を17で追記
+        $histrory = new History();
+        $histrory->news_id = $news->id;
+        $histrory->edited_at = Carbon::now();
+        $histrory->save();
         
         return redirect('admin/news');
     }
